@@ -1,0 +1,49 @@
+error: Message: Reached error page: about:neterror?e=connectionFailure&u=http%3A//192.168.86.20/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20192.168.86.20.
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+UnknownError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:768:5
+checkReadyState@chrome://remote/content/marionette/navigate.sys.mjs:58:24
+onNavigation@chrome://remote/content/marionette/navigate.sys.mjs:324:39
+emit@resource://gre/modules/EventEmitter.sys.mjs:154:20
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteEventsParent.sys.mjs:33:25
+
+error: Message: Reached error page: about:neterror?e=connectionFailure&u=http%3A//192.168.86.20/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20192.168.86.20.
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:189:5
+UnknownError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:768:5
+checkReadyState@chrome://remote/content/marionette/navigate.sys.mjs:58:24
+onNavigation@chrome://remote/content/marionette/navigate.sys.mjs:324:39
+emit@resource://gre/modules/EventEmitter.sys.mjs:154:20
+receiveMessage@chrome://remote/content/marionette/actors/MarionetteEventsParent.sys.mjs:33:25
+
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+/Users/briangildea/reaper-files/reaper-auto-export/2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+/Users/briangildea/reaper-files/reaper-auto-export/2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+/Users/briangildea/reaper-files/reaper-auto-export/2023-12-wasted oasis.mp3
+['.DS_Store', '2023-12-wasted oasis.mp3']
+['2023-12-wasted oasis.mp3']
+2023-12-wasted oasis.mp3
+/Users/briangildea/reaper-files/reaper-auto-export/2023-12-wasted oasis.mp3
