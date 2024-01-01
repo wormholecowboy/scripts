@@ -17,6 +17,8 @@ for FILE in "$DIR"/*; do
         id3v2 -t "$FILENAME" "${FILE}"
         id3v2 -g "sketches" "${FILE}"
         id3v2 -y "$YEAR" "${FILE}"
+        eyed3 --add-image=/Users/briangildea/scripts/tkod.png:FRONT_COVER "$FILE"
+        sleep 3
         # cp "${FILE}" ~/Music/Music/Media.localized/0-sketches/
     fi
 done
