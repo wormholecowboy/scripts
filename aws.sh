@@ -4,12 +4,9 @@ select_service() {
   service_list=("glue" "lambda" "s3")
   selected_service=$(printf "%s\n" "${service_list[@]}" | fzf --prompt "Select a service: " | xargs)
   case "$selected_service" in
-    glue) select_glue_job
-    ;;
-    lambda) select_lambda
-    ;;
-    s3) get_s3_bucket
-    ;;
+    glue) select_glue_job ;;
+    lambda) select_lambda ;;
+    s3) get_s3_bucket ;;
   esac
   
 }
@@ -57,18 +54,29 @@ get_last_lambda_log() {
     aws logs get-log-events --log-group-name "/aws/lambda/$1" --log-stream-name "$log_stream" --query "events[*].[timestamp,message]" | jq
 }
 
+build_dir() {
+  local bucket=$1
+  local prefix=$2
+  local folder=""
+
+  folders=$(aws s3 ls "s3://${bucket}/${prefix}" | grep PRE | sed 's/.*PRE \(.*\)/\1/')
+  if [[ "$folders" ]]; then
+    folder=$(echo "$folders" | fzf --prompt="Select folder to build URL (ESC to finish): ")
+    echo "$folder"
+  else
+    echo "$folder"
+    return 1
+  fi
+}
+
 get_s3_bucket() {
   selected_bucket=$(aws s3 ls | awk '{print $3}' | fzf --prompt "Select a bucket: ")
   # objects=$(aws s3 ls "s3://$selected_bucket/" --recursive)
   # selected_object=$(echo "$objects" | fzf --prompt="Select a subfolder: ")
   prefix=""
   while true; do
-    folder=$(list_dirs "$selected_bucket" "$prefix")
-    echo "prefix: $prefix"
-    echo "folder: $folder"
-    sleep 7
-    if [[ -z "$folder" ]]; then
-      echo "loop ended"
+    folder=$(build_dir "$selected_bucket" "$prefix")
+    if  [[ -z "$folder" ]]; then
       break
     fi
     prefix="${prefix}${folder}"
@@ -76,15 +84,12 @@ get_s3_bucket() {
 
   final_url="s3://${selected_bucket}/${prefix}"
   echo "This will be the final url: ${final_url}"
+  sleep 2
 
-  file_to_copy=$(ls | awk '{print #7}' | fzf) 
-}
+  upload_options=("File" "Sync Folder")
+  printf "%s\n" "${upload_options[@]}" | fzf -p "Select an upload method: " | xargs
 
-list_dirs() {
-  local bucket=$1
-  local prefix=$2
-
-  aws s3 ls "s3://${bucket}/${prefix}" | grep PRE | sed 's/.*PRE \(.*\)/\1/' | fzf --prompt="Select folder to build URL (ESC to finish): "
+  # file_to_copy=$(ls | awk '{print #7}' | fzf) 
 }
 
 # Main script logic
