@@ -8,7 +8,7 @@
 
 check_login() {
   if ! saml2aws script &> /dev/null; then
-    echo "You are not logged into AWS."
+    echo "You are not logged into AWS. Make sure you are connected to the VPN. "
     sleep 2
     exit 1
   fi
@@ -26,4 +26,5 @@ select_service() {
 }
 
 check_login
+if ! check_login; then return; fi
 select_service

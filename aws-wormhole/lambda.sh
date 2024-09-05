@@ -10,11 +10,13 @@ select_lambda() {
     fi
 }
 
-get_last_lambda_log() {
+get_lambda_log() {
     select_lambda
     log_group_name="/aws/lambda/$selected_lambda"
-    log_stream=$(aws logs describe-log-streams --log-group-name "$log_group_name" --order-by LastEventTime --descending --limit 1 --query "logStreams[0].logStreamName" --output text)
+    log_stream=$(aws logs describe-log-streams --log-group-name "$log_group_name" --order-by LastEventTime --descending --limit 20 --output text | cut -d ':' -f 9 | awk '{print $1}' | fzf)
+    # log_stream=$(aws logs describe-log-streams --log-group-name "$log_group_name" --order-by LastEventTime --descending --limit 1 --query "logStreams[0].logStreamName" --output text)
     aws logs get-log-events --log-group-name "$log_group_name" --log-stream-name "$log_stream" --query "events[*].[timestamp,message]" | jq | fzf
+    get_lambda_log
 }
 
 upload_lambda_zip() {
@@ -31,7 +33,7 @@ lambda_main() {
 
   case "$selected_lambda_service" in
     "Get Logs")
-      get_last_lambda_log;;
+      get_lambda_log;;
     "Upload Zip")
       upload_lambda_zip;;
   esac

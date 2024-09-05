@@ -19,7 +19,7 @@ get_last_glue_log() {
     JOB_IDS=$(aws glue get-job-runs --job-name "$1" --query 'JobRuns[0].Id' --output text)
     JOB_ID=$(echo $JOB_IDS | tr ' ' '\n' | head -n 1)
     echo "$JOB_ID"
-    aws logs get-log-events --log-group-name "$glue_final_url" --log-stream-name "$JOB_ID" --start-from-head | jq | fzf
+    aws logs get-log-events --log-group-name "$glue_final_url" --log-stream-name "$JOB_ID" --start-from-head | jq | less
     # log_stream=$(aws logs describe-log-streams --log-group-name "$glue_url" --order-by LastEventTime --descending --limit 1 --query "logStreams[0].logStreamName" --output text)
     # aws logs get-log-events --log-group-name "$glue_url" --log-stream-name "$log_stream" --query "events[*].[timestamp,message]" | jq
 }
