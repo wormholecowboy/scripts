@@ -6,6 +6,10 @@ if ! saml2aws login; then
 fi
 
 output=$(saml2aws script | head -n 3)
+if [ $? -ne 0 ] || [ -z "$output" ]; then
+  echo "Error: Failed to generate output from saml2aws script."
+  exit 1
+fi
 
 while IFS= read -r line; do
     eval "$line"
